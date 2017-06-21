@@ -1,0 +1,3 @@
+- Edit all 'ProjectLeshanServer' occurrence to the corresponding Thing name you have given.
+- Edit all 'RoomA', 'RoomB', 'BuildingServerClient' occurrence to the respective Endpoint Names you have given for room clients and the building server client.
+- Copy the file into 'conf/rules' folder in openHAB 2.0 binary's folder 

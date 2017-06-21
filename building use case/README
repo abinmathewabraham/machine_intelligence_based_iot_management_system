@@ -1,0 +1,16 @@
+- Demo for Machine Intelligence Based IoT Management System
+- Sprinkler fire sensor use case
+	- sprinkler will be turned on when fire is detected.
+	- If there is a running server, the system first shuts the server down and then turns on the sprinkler
+	- These decisions are taken by the system.
+
+- Run Leshan Project Server
+- Run 2 instances of Room Client
+- Run Building Server Client
+- Run PANDA service
+- Copy paste all the openHAB files to the corresponding folders reading the README
+- Run openHAB
+- Create a Thing using the binding created for the Leshasn Server
+- Click on the sitemaps to initate triggering
+- Change the state on the clients to see how the system figures out the solutions
+- Refer the report

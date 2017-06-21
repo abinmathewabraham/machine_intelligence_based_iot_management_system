@@ -1,0 +1,1 @@
+(define (problem sprinkler_problem)(:domain sprinkler_usecase-strips)(:objects roomA roomB)(:init (has_off_sprinkler roomA) (has_on_server roomA) (has_off_sprinkler roomB) (has_off_server roomB) )(:goal (and (has_on_sprinkler roomA) )))

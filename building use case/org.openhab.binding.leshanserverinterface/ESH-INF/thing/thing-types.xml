@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="leshanserverinterface"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+        xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+    <!-- Sample Thing Type -->
+    <thing-type id="leshanadapter">
+        <label>Leshan Server Test Interface</label>
+        <description>Test adapter for Leshan Server Interface</description>
+        
+        <channels>
+            <channel id="refreshCmdChannel" typeId="command-channel"/>
+            <channel id="refreshResponseChannel" typeId="response-channel" />
+        </channels>
+        
+        <!--  
+        <channel-groups>
+            <channel-group typeId="cmdresCGType" id="cmdresCG"/>
+        </channel-groups>
+        -->
+        <config-description>
+            <parameter name="HOST" type="text" required="true">
+                <context>network-address</context>
+                <label>IP Address</label>
+                <description>The IP address of the Toy Server.</description>
+            </parameter>
+            <parameter name="PORT" type="text" required="true">
+                <label>Port Number</label>
+                <description>Port to which the connection is to be made.</description>
+            </parameter>
+        </config-description>
+    </thing-type>
+
+    <!-- Sample Channel Type -->
+    <channel-type id="command-channel">
+        <item-type>Switch</item-type>
+        <label>Refresh</label>
+        <description>Get updated client count from Leshan Server</description>
+    </channel-type>
+    <channel-type id="response-channel">
+        <item-type>String</item-type>
+        <label>Client Count</label>
+        <description>Response from the Leshan Server</description>
+        <state readOnly="false" pattern="%s Clients"></state> 
+    </channel-type>
+
+</thing:thing-descriptions>

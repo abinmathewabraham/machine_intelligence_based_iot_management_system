@@ -1,0 +1,2 @@
+- Copy paste the script file to the 'userdata' folder in openHAB 2.0 binary's folder
+- Need to edit the callPanda.py file to provide the appropriate ip address of the PANDA service.

@@ -1,0 +1,32 @@
+(define (problem problem1x)
+        (:domain cameras)
+        (:objects
+                c1 c2 c3 c4 c5 - cam
+                r1 r2 r3 r4 r5 r6 r7 r8 r9 - region)
+
+        (:INIT
+                (cancover c1 r1) (cancover c1 r5)
+                (cancover c2 r2) (cancover c2 r6)
+                (cancover c3 r3) (cancover c3 r7)
+                (cancover c4 r4) (cancover c4 r8)
+                (cancover c5 r5) (cancover c5 r6) (cancover c5 r7) (cancover c5 r8) (cancover c5 r9)
+                
+                (ison c1) (ison c2) (ison c3) (ison c4) (ison c5)
+                
+                (iscovering c1 r1) (iscovering c1 r5)
+                (iscovering c2 r2) (iscovering c2 r6)
+                (iscovering c3 r3) (iscovering c3 r7)
+                (iscovering c4 r4) (iscovering c4 r8)
+                (iscovering c5 r5) (iscovering c5 r6) (iscovering c5 r7) (iscovering c5 r8) (iscovering c5 r9)
+                
+                (critical r5) (critical r6) (critical r7) (critical r8)
+                (check) (safe)
+        )
+        (:goal
+                (AND (upgraded  c1) (upgraded  c2) (upgraded c3) (upgraded c4) (upgraded c5) 
+                     (ison c1) (ison c2) (ison c3) (ison c4) (ison c5)
+                     (safe) (not (check)))
+        ) 
+        (:metric minimize (total-time))
+
+)

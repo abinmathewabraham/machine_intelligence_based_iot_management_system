@@ -1,0 +1,74 @@
+(define (problem problem1)
+        (:domain cameratest)
+        (:objects
+                c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c12 c13 - cam
+                r1 r2 r3 r4 r5 r6 r7 r8 r9 r10 r11 r12 r13 r14 r15 r16 r17 r18 r19 r20 r21 r22 r23 r24 r25 r26 r27 r28 r29 r30 r31 r32 r33 r34 r35 r36 r37 r38 r39 r40 r41 r42 r43 r44 r45 r46 r47 r48 r49 r50 r51 r52 r53 r54 r55 r56 r57 r58 r59 r60 r61 - region)
+
+        (:INIT
+				(= (current_state c1) 0)
+				(= (current_state c2) 0)
+				(= (current_state c3) 0)
+				(= (current_state c4) 0)
+				(= (current_state c5) 0)
+				(= (current_state c6) 0)
+				(= (current_state c7) 0)
+				(= (current_state c8) 0)
+				(= (current_state c9) 0)
+				(= (current_state c10) 0)
+				(= (current_state c11) 0)
+				(= (current_state c12) 0)
+				(= (current_state c13) 0)
+
+
+				
+                (cancover c1 r1) (cancover c1 r2) (cancover c1 r14) (cancover c1 r13) (cancover c1 r36) (cancover c1 r35) (cancover c1 r34) (cancover c1 r12)
+                (cancover c2 r3) (cancover c2 r4) (cancover c2 r18) (cancover c2 r17) (cancover c2 r16) (cancover c2 r15) (cancover c2 r14) (cancover c2 r2)
+				(cancover c3 r5) (cancover c3 r6) (cancover c3 r22) (cancover c3 r21) (cancover c3 r20) (cancover c3 r19) (cancover c3 r18) (cancover c3 r4)
+				(cancover c4 r7) (cancover c4 r8) (cancover c4 r26) (cancover c4 r25) (cancover c4 r24) (cancover c4 r23) (cancover c4 r22) (cancover c4 r6)
+				(cancover c5 r9) (cancover c5 r10) (cancover c5 r30) (cancover c5 r29) (cancover c5 r28) (cancover c5 r27) (cancover c5 r26) (cancover c5 r8)
+				(cancover c6 r11) (cancover c6 r12) (cancover c6 r34) (cancover c6 r33) (cancover c6 r32) (cancover c6 r31) (cancover c6 r30) (cancover c6 r10)
+
+				(cancover c7 r13) (cancover c7 r14) (cancover c7 r15) (cancover c7 r16) (cancover c7 r38) (cancover c7 r50) (cancover c7 r49) (cancover c7 r60) (cancover c7 r48) (cancover c7 r36) (cancover c7 r37)
+				(cancover c8 r16) (cancover c8 r17) (cancover c8 r18) (cancover c8 r19) (cancover c8 r20) (cancover c8 r40) (cancover c8 r52) (cancover c8 r51) (cancover c8 r50) (cancover c8 r38) (cancover c8 r39)
+				(cancover c9 r20) (cancover c9 r21) (cancover c9 r22) (cancover c9 r23) (cancover c9 r24) (cancover c9 r42) (cancover c9 r54) (cancover c9 r53) (cancover c9 r52) (cancover c9 r40) (cancover c9 r41)
+				(cancover c10 r24) (cancover c10 r25) (cancover c10 r26) (cancover c10 r27) (cancover c10 r28) (cancover c10 r44) (cancover c10 r56) (cancover c10 r55) (cancover c10 r54) (cancover c10 r42) (cancover c10 r43)
+				(cancover c11 r28) (cancover c11 r29) (cancover c11 r30) (cancover c11 r31) (cancover c11 r32) (cancover c11 r46) (cancover c11 r58) (cancover c11 r57) (cancover c11 r56) (cancover c11 r44) (cancover c11 r45)
+				(cancover c12 r32) (cancover c12 r33) (cancover c12 r34) (cancover c12 r35) (cancover c12 r36) (cancover c12 r48) (cancover c12 r60) (cancover c12 r59) (cancover c12 r58) (cancover c12 r46) (cancover c12 r47)
+
+
+
+				(cancover c13 r49) (cancover c13 r50) (cancover c13 r51) (cancover c13 r52) (cancover c13 r53) (cancover c13 r54) (cancover c13 r55) (cancover c13 r56) (cancover c13 r57) (cancover c13 r58) (cancover c13 r59) (cancover c13 r60) (cancover c13 r61)
+
+
+				(ison c1) (ison c2) (ison c3) (ison c4) (ison c5) (ison c6) (ison c7) (ison c8) (ison c9) (ison c10) (ison c11) (ison c12) (ison c13)
+
+				(iscovering c1 r1) (iscovering c1 r2) (iscovering c1 r14) (iscovering c1 r13) (iscovering c1 r36) (iscovering c1 r35) (iscovering c1 r34) (iscovering c1 r12)
+				(iscovering c2 r3) (iscovering c2 r4) (iscovering c2 r18) (iscovering c2 r17) (iscovering c2 r16) (iscovering c2 r15) (iscovering c2 r14) (iscovering c2 r2)
+				(iscovering c3 r5) (iscovering c3 r6) (iscovering c3 r22) (iscovering c3 r21) (iscovering c3 r20) (iscovering c3 r19) (iscovering c3 r18) (iscovering c3 r4)
+				(iscovering c4 r7) (iscovering c4 r8) (iscovering c4 r26) (iscovering c4 r25) (iscovering c4 r24) (iscovering c4 r23) (iscovering c4 r22) (iscovering c4 r6)
+				(iscovering c5 r9) (iscovering c5 r10) (iscovering c5 r30) (iscovering c5 r29) (iscovering c5 r28) (iscovering c5 r27) (iscovering c5 r26) (iscovering c5 r8)
+				(iscovering c6 r11) (iscovering c6 r12) (iscovering c6 r34) (iscovering c6 r33) (iscovering c6 r32) (iscovering c6 r31) (iscovering c6 r30) (iscovering c6 r10)
+
+				(iscovering c7 r13) (iscovering c7 r14) (iscovering c7 r15) (iscovering c7 r16) (iscovering c7 r38) (iscovering c7 r50) (iscovering c7 r49) (iscovering c7 r60) (iscovering c7 r48) (iscovering c7 r36) (iscovering c7 r37)
+				(iscovering c8 r16) (iscovering c8 r17) (iscovering c8 r18) (iscovering c8 r19) (iscovering c8 r20) (iscovering c8 r40) (iscovering c8 r52) (iscovering c8 r51) (iscovering c8 r50) (iscovering c8 r38) (iscovering c8 r39)
+				(iscovering c9 r20) (iscovering c9 r21) (iscovering c9 r22) (iscovering c9 r23) (iscovering c9 r24) (iscovering c9 r42) (iscovering c9 r54) (iscovering c9 r53) (iscovering c9 r52) (iscovering c9 r40) (iscovering c9 r41)
+				(iscovering c10 r24) (iscovering c10 r25) (iscovering c10 r26) (iscovering c10 r27) (iscovering c10 r28) (iscovering c10 r44) (iscovering c10 r56) (iscovering c10 r55) (iscovering c10 r54) (iscovering c10 r42) (iscovering c10 r43)
+				(iscovering c11 r28) (iscovering c11 r29) (iscovering c11 r30) (iscovering c11 r31) (iscovering c11 r32) (iscovering c11 r46) (iscovering c11 r58) (iscovering c11 r57) (iscovering c11 r56) (iscovering c11 r44) (iscovering c11 r45)
+				(iscovering c12 r32) (iscovering c12 r33) (iscovering c12 r34) (iscovering c12 r35) (iscovering c12 r36) (iscovering c12 r48) (iscovering c12 r60) (iscovering c12 r59) (iscovering c12 r58) (iscovering c12 r46) (iscovering c12 r47)
+
+				(iscovering c13 r49) (iscovering c13 r50) (iscovering c13 r51) (iscovering c13 r52) (iscovering c13 r53) (iscovering c13 r54) (iscovering c13 r55) (iscovering c13 r56) (iscovering c13 r57) (iscovering c13 r58) (iscovering c13 r59) (iscovering c13 r60) (iscovering c13 r61)
+
+                
+				(critical r49) (critical r50) (critical r51) (critical r52) (critical r53) (critical r54) (critical r55) (critical r56) (critical r57) (critical r58) (critical r59) (critical r60)
+				(critical r13) (critical r15) (critical r17) (critical r19) (critical r21) (critical r23) (critical r25) (critical r27) (critical r29) (critical r31) (critical r33) (critical r35)
+				(safe)
+        )
+        (:goal
+                (AND 
+					 (upgraded  c1) (upgraded  c2) (upgraded c3) (upgraded  c4) (upgraded  c5) (upgraded c6) (upgraded  c7) (upgraded  c8) (upgraded c9) (upgraded  c10) (upgraded  c11) (upgraded c12) (upgraded c13)
+                     (ison c1) (ison c2) (ison c3) (ison c4) (ison c5) (ison c6) (ison c7) (ison c8) (ison c9) (ison c10) (ison c11) (ison c12) (ison c13)
+                     (safe) (not (check)))
+        )
+        (:metric minimize (total-time))
+
+)

@@ -1,0 +1,67 @@
+Camera usecase
+* We have a set of regions out of which a few are critical regions. By critical region, we mean it should be always monitored.
+* We have cameras monitoring the regions.
+* We may need to upgrade or change the settings of a camera and it can only be done when the camera is switched off.
+* Switching off a camera can result in unmonitored critical regions which is undesirable.
+* Critical region should be monitored always atleast by one camera.
+
+Planning
+* In our scenario, initially all the critical regions will be monitored by atleast 1 cameras.
+* Our goal is to upgrade all the cameras.
+* For upgradation, the camera has to be in OFF state. If it is ON, we should switch it OFF, which might result in unmonitored critical region. So that condition must be handled. Some other camera should be upgraded if not and TURNED ON to monitor that region and then only we can switch off the camera which was intially monitoring that region for upgradation.
+
+
+States that should be provided
+1) We should know if a camera can cover a region
+2) We should know if a camera is covering a region or not
+3) We should know if camera is on or off
+4) We should know if a region is critical or not
+5) We should know if a camera is upgraded or not
+
+Predicates
+1) upgraded ?c - camera
+2) iscovering ?c - camera ?r - region
+3) cancover ?c - camera ?r - region
+4) ison ?c - camera
+5) critical ?r - region
+6) check
+7) safe
+* check and safe predicates are kind of like flags. This ensures that an action SAFETY_CHECK is done always after one of the other actions are done.
+
+
+Actions
+1) SAFETY-CHECK
+	This action ensures that the states are in the safe state. In our context, a safe state is where all the critical regions are being monitored by atleast one camera. This action will only occur if the 'check' predicate is available. We have modelled the problem in such a way that after every other action SAFETY-CHECK action is enforced. This is to ensure that the domain file is not closely dependent on the Policies. Domain file will be modified inside this part based on the policeis. The policies will be converted to suitable predicates/statements and will be added to this actions effect part. If the policies can be converted to a logical statement X, this X will be added to this action as 'If X then 'safe' and If not X then 'not safe''. The effect this action does is:-
+		* deletes 'check' predicate
+		* if for all region, if the region is critical region (critical ?r), then if there is a camera which covers that region (iscovering ?c ?r), then it adds the 'safe' predicate
+		* if there is a region which is critical (critical ?r), for all camera none are covering that region (not (iscovering ?c ?r)), then it deletes the 'safe' predicate  
+
+2) TURN-ON
+	The parameter to this action is camera. The preconditions for this:-
+		* the camera should be off (not (ison ?c))
+		* the 'safe' predicate should be present (action is done only after SAFETY-CHECK and if it is safe)
+		* the 'check' predicate shouldn't be present (note:- 'check' predicate won't be present if SAFETY-CHECK is done)
+	The effect will be:-
+		* 'check' predicate will be added
+		* 'ison ?c' predicate will be added
+		* for all region for which the camera can cover (cancover ?c ?r), 'iscovering ?c ?r' predicate will be added
+		
+* TURN-OFF
+	The parameter to this action is camera. The preconditions for this:-
+		* the camera should be on (ison ?c)
+		* the 'safe' predicate should be present (action is done only after SAFETY-CHECK and if it is safe)
+		* the 'check' predicate shouldn't be present (note:- 'check' predicate won't be present if SAFETY-CHECK is done)
+	The effect will be:-
+		* 'check' predicate will be added
+		* 'ison ?c' predicate will be removed
+		* for all region for which the camera can cover (cancover ?c ?r), 'iscovering ?c ?r' predicate will be removed
+* UPGRADE
+	The parameter to this action is camera. The preconditions for this:-
+		* the 'safe' predicate should be present (action is done only after SAFETY-CHECK and if it is safe)
+		* the 'check' predicate shouldn't be present (note:- 'check' predicate won't be present if SAFETY-CHECK is done)
+		* the camera should be off (not (ison ?c))
+		* the camera should not be upgraded (not (upgraded ?c))
+	The effect will be:-
+		* 'upgrade ?c' predicate will be added
+		* 'check' predicate will be added
+

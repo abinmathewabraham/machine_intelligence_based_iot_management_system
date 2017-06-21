@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.openhab.binding.leshanserverinterface;singlet
+ on:=true
+Export-Package: org.openhab.binding.leshanserverinterface,org.openhab.
+ binding.leshanserverinterface.handler
+Bundle-Name: LeshanServerInterface Binding
+Bundle-Version: 2.0.0.201612060724
+Bundle-ClassPath: .
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Vendor: openHAB
+Import-Package: org.openhab.binding.leshanserverinterface,org.openhab.
+ binding.leshanserverinterface.handler,org.eclipse.smarthome.config.co
+ re,org.eclipse.smarthome.core.library.types,org.eclipse.smarthome.cor
+ e.thing,org.eclipse.smarthome.core.thing.binding,org.eclipse.smarthom
+ e.core.thing.binding.builder,org.eclipse.smarthome.core.thing.type,or
+ g.eclipse.smarthome.core.types,org.slf4j,com.google.gson,com.google.g
+ son.reflect
+Service-Component: OSGI-INF/*.xml
+

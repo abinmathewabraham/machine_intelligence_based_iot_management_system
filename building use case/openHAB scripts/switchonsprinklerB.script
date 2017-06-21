@@ -1,0 +1,44 @@
+var String args = "roomA:roomB roomB "
+if(leshanserverinterface_leshanadapter_ProjectLeshanServer_BuildingServerClient_IPSOSetPoint_0_readValueResponse.state.toString.equals("RoomA")){
+	args += "roomA"
+}else if(leshanserverinterface_leshanadapter_ProjectLeshanServer_BuildingServerClient_IPSOSetPoint_0_readValueResponse.state.toString.equals("RoomB")){
+	args += "roomB"
+}
+var String response = executeCommandLine("./getplan.sh "+args,5000)
+
+if(response.equals("null")){
+	return
+}
+var String[] instruction = response.split("\n")
+var String[] temp = null
+var java.util.ArrayList<String> commands = new java.util.ArrayList()
+var java.util.ArrayList<String> params = new java.util.ArrayList()
+
+var int len = instruction.length
+var int i = 0
+while(i < len){
+	temp = instruction.get(i).split(" ")
+	commands.add(temp.get(0))
+	params.add(temp.get(1))
+	i++
+}
+
+var String item
+var String cmd
+var String param
+i = 0
+while(i < len){
+	cmd = commands.get(i)
+	param = params.get(i)
+	if(cmd.equals("switch_off_server")){
+		item = "leshanserverinterface_leshanadapter_ProjectLeshanServer_BuildingServerClient_IPSOActuation_0_readOnOffStateResponse"
+		sendCommand(item,"OFF")
+	}else if(cmd.equals("switch_on_sprinkler") && param.equals("roomA")){
+		item = "leshanserverinterface_leshanadapter_ProjectLeshanServer_RoomAClient_IPSOActuation_0_readOnOffStateResponse"
+		sendCommand(item,"ON")
+	}else if(cmd.equals("switch_on_sprinkler") && param.equals("roomB")){
+		item = "leshanserverinterface_leshanadapter_ProjectLeshanServer_RoomBClient_IPSOActuation_0_readOnOffStateResponse"
+		sendCommand(item,"ON")
+	}
+	i++
+}

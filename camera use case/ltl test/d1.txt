@@ -1,0 +1,108 @@
+
+(define (domain cameratest)
+  (:requirements :strips :negative-preconditions
+                 :conditional-effects :disjunctive-preconditions)
+;;  (:constants ON OFF)
+  (:types cam region)
+  (:predicates
+         (upgraded ?c)
+         (iscovering ?c ?r)
+         (cancover ?c ?r)
+         (ison ?c)
+         (critical ?r)
+         (check)(safe)
+         (state ?c)
+  )
+  ;; (:functions (total-cost)
+  ;; )
+
+  (:functions
+		 (current_state ?c - cam)
+  )
+
+  (:action PAUSE
+	:parameters ()
+	:precondition (and (not(check)) (safe))
+	:effect
+		(and (check))
+  )
+
+  (:action UPGRADE
+        :parameters (?c - cam)
+        :precondition (and (not(check)) (safe)
+                 (not (ison ?c))
+                 (not (upgraded ?c)))
+        :effect (and (check) (upgraded ?c))
+  )
+  (:action TURN-ON
+        :parameters  (?c - cam)
+        :precondition (and (not(check)) (safe)
+                      (not (ison ?c)))
+        :effect (and (check) (ison ?c)
+                     (forall (?r - region)
+                        (when (canCover ?c ?r)
+                              (iscovering ?c ?r))
+                     ))
+  )
+
+  (:action TURN-OFF
+        :parameters  (?c - cam)
+        :precondition (and (not(check)) (safe)
+                      (ison ?c))
+        :effect (and (check) (not (ison ?c))
+                     (forall (?r - region)
+                        (when (canCover ?c ?r)
+                              (not (iscovering ?c ?r)))
+                     ))
+  )
+
+  (:action SAFETY-CHECK
+    :parameters ()
+        :precondition (check)
+        :effect
+                (and    (not(check))
+                        
+                        (when
+                                (exists (?r - region)
+                                        (and (critical ?r)
+                                         (forall (?c - cam) (not (iscovering ?c ?r)))))
+                                (not (safe))
+                        )
+
+						(forall (?c - cam) 
+							(when (and (>= (current_state ?c) 1) (<= (current_state ?c) 3) (ison ?c))                (not (safe)))
+						)
+						
+						(forall (?c - cam) 
+							(when (and (= (current_state ?c) 0) (upgraded ?c) (not (ison ?c)))                  (increase (current_state ?c) 1))
+						)
+						(forall (?c - cam)
+							(when (and (>= (current_state ?c) 1) (<= (current_state ?c) 3))                     (increase (current_state ?c) 1))
+						)
+						;;(forall (?c - cam)
+						;;	(when (and (>= (current_state ?c) 3))                                               ( (current_state ?c) 3))
+						;;)
+                )
+  )
+)
+
+;; IMPLEMENTATION OF BUCHI AUTOMATON
+;;(when
+;;	(exists (?c - cam) (and (>= (current_state ?c) 1) (<= (current_state ?c) 3) (ison ?c)))
+;;		(not (safe))
+;;)
+
+;;(forall (?c - cam)
+;;		(when (and (= (current_state ?c) 0) (upgraded ?c) (not (ison ?c)))
+;;		           (increase (current_state ?c) 1)
+;;		)
+;;)
+
+;;(forall (?c - cam)
+;;		(when (and (>= (current_state ?c) 1) (<= (current_state ?c) 3))
+;;		           (increase (current_state ?c) 1)
+;;		)
+;;)
+;;BUCHI AUTOMATON END
+
+

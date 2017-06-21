@@ -1,0 +1,10 @@
+sitemap tempSitemap label="Main Menu"
+{
+	Frame{
+		
+		Switch icon="present" label="Turn on Sprinkler in Room A" item=RoomASprinklerSwitch	
+		Switch icon="present" label="Turn on Sprinkler in Room B" item=RoomBSprinklerSwitch
+		Switch icon="present" label="Test Post Request" item=TestSwitch
+	}
+
+}

@@ -1,0 +1,18 @@
+- This is a copy of the official Leshan Client Demo.
+- The Project contains code to simulate a building server actuation and its location.
+- Building actuation is modelled as Actuation Object and Location data is modelled as Set Point Object.
+- r/R toggles the location data... 0 - Room A, 1 - Room B
+- s/S toggles the Server actuation state
+
+
+Procedures to build this server:-
+1) Download the Leshan project from Github.
+2) Paste this project folder into leshan-master/leshan/.
+3) Do 'mvn clean install' as instructed in leshan repository
+	- This will create the necessary jar files which will be used in the next step
+4) Do 'mvn clean install' inside the project folder.
+	- The jar files will be created in the target folder
+
+To Run:-
+	java -jar building_server_leshan-client/target/building_server-client-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+		- command line arguments can be given. (For example -n BuildingServerClient will set the Endpoint as RoomAClient)

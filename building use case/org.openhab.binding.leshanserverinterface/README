@@ -1,0 +1,12 @@
+- openHAB 2.0 binding to talk to the Leshan Server
+- Starting point "LeshanServerInterfaceHandler.java"
+- Modify "initiateRequestSending" method in "ServerCommandsHandler.java" class to use Leshan server's REST API instead of Socket connection
+		- refer FetchClientCountThread.java and FetchClientCountThread2.java for this
+
+Procedures to pack it:-
+1) Download the openHAB master from Github
+2) Paste this project folder into openhab2-master/git/openhab2-addons/addons/binding folder
+3) Do "mvn package"
+	- this will create the binding jar files in 'target' folder inside this project folder
+	- you may need to edit the <version> tags in the project pom file
+4) Copy paste the packed jar file to the 'addons' folder in the openHAB 2.0 binaries folder

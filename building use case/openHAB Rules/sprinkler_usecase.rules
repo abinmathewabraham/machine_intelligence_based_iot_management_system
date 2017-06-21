@@ -1,0 +1,55 @@
+rule "Fire in Room A detected"
+when
+	Item leshanserverinterface_leshanadapter_ProjectLeshanServer_RoomAClient_IPSOGenericSensor_0_readValueResponse changed from OFF to ON or
+	Item leshanserverinterface_leshanadapter_ProjectLeshanServer_RoomAClient_IPSOGenericSensor_0_readValueResponse changed from NULL to ON 
+then
+	callScript("switchonsprinklerA")
+end
+
+
+rule "Fire in Room B detected"
+when
+	Item leshanserverinterface_leshanadapter_ProjectLeshanServer_RoomBClient_IPSOGenericSensor_0_readValueResponse changed from OFF to ON or
+	Item leshanserverinterface_leshanadapter_ProjectLeshanServer_RoomBClient_IPSOGenericSensor_0_readValueResponse changed from NULL to ON 
+then
+	callScript("switchonsprinklerB")
+end
+
+
+rule "Initialize switches"
+when
+	System started
+then
+	postUpdate(RoomASprinklerSwitch,OFF);
+	postUpdate(RoomBSprinklerSwitch,OFF);
+end
+
+
+rule "frequent state fetch"
+when
+	Time cron "0/10 * * * * ?"
+then
+	sendCommand("leshanserverinterface_leshanadapter_ProjectLeshanServer_BuildingServerClient_IPSOSetPoint_0_readValue","ON");
+	sendCommand("leshanserverinterface_leshanadapter_ProjectLeshanServer_BuildingServerClient_IPSOActuation_0_readOnOffState","ON");
+	
+	sendCommand("leshanserverinterface_leshanadapter_ProjectLeshanServer_RoomAClient_IPSOActuation_0_readOnOffState","ON");
+	sendCommand("leshanserverinterface_leshanadapter_ProjectLeshanServer_RoomAClient_IPSOGenericSensor_0_readValue","ON");
+	
+	sendCommand("leshanserverinterface_leshanadapter_ProjectLeshanServer_RoomBClient_IPSOActuation_0_readOnOffState","ON");
+	sendCommand("leshanserverinterface_leshanadapter_ProjectLeshanServer_RoomBClient_IPSOGenericSensor_0_readValue","ON");
+end
+	
+rule "Trigger sprinkler in Room A"
+when
+	Item RoomASprinklerSwitch received command ON
+then
+	callScript("switchonsprinklerA")
+end
+
+
+rule "Trigger sprinkler in Room B"
+when
+	Item RoomBSprinklerSwitch received command ON
+then
+	callScript("switchonsprinklerB")
+end
