@@ -1,4 +1,4 @@
-# machine_intelligence_based_iot_management_system
-- Contains all the resources used for the thesis
-- Refer the report
+# Machine Intelligence based IoT Management System
+- Contains all the resources used for the project
+- Refer the report - pdf file
 - Each individual resources has its own README file
